@@ -4,8 +4,8 @@ void Game::Init() {
   myPlayer.SetX(300);
   myPlayer.SetY(300);
   CreateOpponents();
-  CreateOpponentProjectiles();
-  CreatePlayerProjectiles();
+  //CreateOpponentProjectiles();
+  //CreatePlayerProjectiles();
   screen.AddMouseEventListener(*this);
   screen.AddAnimationEventListener(*this);
 }
@@ -13,10 +13,11 @@ void Game::Init() {
 void Game::CreateOpponents() {
   for (int i = 0; i < 3; i++) {
     Opponent my_opponent(100 * i, 20);
-    myOpp.push_back(my_opponent);
+    std::unique_ptr<Opponent> oppList = std::make_unique<Opponent>(10,10);
+    myOpp.push_back(std::move(oppList));
   }
 }
-void Game::CreateOpponentProjectiles() {
+/*void Game::CreateOpponentProjectiles() {
   for (int i = 0; i < 3; i++) {
     OpponentProjectile my_opponent_projectile(100 * i, 100);
     myOppPro.push_back(my_opponent_projectile);
@@ -28,7 +29,7 @@ void Game::CreatePlayerProjectiles() {
     PlayerProjectile my_projectile(100 * i, 450);
     myPlayPro.push_back(my_projectile);
   }
-}
+}*/
 
 void Game::UpdateScreen() {
   screen.DrawRectangle(0, 0, 800, 600, 255, 255, 255);
@@ -82,6 +83,9 @@ void Game::FilterIntersections() {
 }
 
 void Game::OnAnimationStep() {
+  if (myOpp.size() < 1) {
+    CreateOpponents();
+  }
   MoveGameElements();
   FilterIntersections();
   UpdateScreen();
@@ -94,5 +98,15 @@ void Game::OnMouseEvent(const graphics::MouseEvent &mouse) {
       mouse.GetX() < screen.GetWidth() && mouse.GetY() < screen.GetHeight()) {
     myPlayer.SetX(mouse.GetX() - myPlayer.GetWidth() / 2);
     myPlayer.SetY(mouse.GetY() - myPlayer.GetHeight() / 2);
+    if (myPlayer.GetX() > 800 || myPlayer.GetX() < 0) {
+      player.SetX(temp_x);
+    }
+    if (myPlayer.GetY() > 600 || myPlayer.GetY() < 0) {
+      player.SetY(temp_y);
   }
 }
+if (mouseEvent.GetMouseAction() == graphics::MouseAction::kPressed || 
+    mouseEvent.GetMouseAction() == graphics::MouseAction::kDragged) {
+      std::unique_ptr<PlayerProjectile> onMouseEvent_myOpp = std::make_unique<PlayerProjectile>(GetX(), GetY());
+      myPlayPro.push_back(std::move(OnMouseEvent_myOpp));
+    }
