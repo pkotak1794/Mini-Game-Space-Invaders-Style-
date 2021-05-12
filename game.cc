@@ -3,7 +3,7 @@
 void Game::Init() {
   myPlayer.SetX(300);
   myPlayer.SetY(300);
-  CreateOpponents();
+  //CreateOpponents();
   //CreateOpponentProjectiles();
   //CreatePlayerProjectiles();
   screen.AddMouseEventListener(*this);
@@ -49,13 +49,19 @@ void Game::UpdateScreen() {
 
 void Game::MoveGameElements() {
   for (int i = 0; i < myOpp.size(); i++) {
-    myOpp[i].Move(screen);
+    if (myOpp[i]->GetIsActive()) {
+    myOpp[i]->Move(screen);
+    }
   }
-  for (int i = 0; i < myOppPro.size(); i++) {
-    myOppPro[i].Move(screen);
+  for (int p = 0; p < myOppPro.size(); p++) {
+    if (myOppPro[p]->GetIsActive()) {
+    myOppPro[p]->Move(screen);
+    }
   }
-  for (int i = 0; i < myPlayPro.size(); i++) {
-    myPlayPro[i].Move(screen);
+  for (int j = 0; j < myPlayPro.size(); j++) {
+    if (myPlayPro[j]->GetIsActive()) {
+    myPlayPro[j].Move(screen);
+    }
   }
 }
 
@@ -110,3 +116,21 @@ if (mouseEvent.GetMouseAction() == graphics::MouseAction::kPressed ||
       std::unique_ptr<PlayerProjectile> onMouseEvent_myOpp = std::make_unique<PlayerProjectile>(GetX(), GetY());
       myPlayPro.push_back(std::move(OnMouseEvent_myOpp));
     }
+
+void RemoveInactive() {
+  for (int a = myOpp.size() - 1; a >= 0; a--) {
+    if (!myOpp[a]->GetIsActive()) {
+      myOpp.erase(myOpp.begin() + a);
+    }
+  }
+  for (int b = myOppPro.size() - 1; b >= 0; b--) {
+    if (!myOppPro[b]->GetIsActive()) {
+      myOppPro.erase(myOppPro.begin() + b);
+    }
+  }
+  for (int c = myPlayPro.size() - 1; c >= 0; c--) {
+    if (!=myPlayPro[c]->GetIsActive()) {
+      myPlayPro.erase(myPlayPro.begin() + c);
+    }
+  }
+}

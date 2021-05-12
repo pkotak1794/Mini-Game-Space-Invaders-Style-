@@ -27,13 +27,18 @@ class Game : public graphics::AnimationEventListener,
   void FilterIntersections();
   void OnAnimationStep();
   void OnMouseEvent(const graphics::MouseEvent &mouse);
+  void RemoveInactive();
+  int GetScore() { return score_; }
+  bool HasLost() { return haslost_; }
 
  private:
   graphics::Image screen;
-  std::vector<Opponent> myOpp;
-  std::vector<OpponentProjectile> myOppPro;
-  std::vector<PlayerProjectile> myPlayPro;
+  std::vector<std::unique_ptr<Opponent>> myOpp;
+  std::vector<std::unique_ptr<OpponentProjectile>> myOppPro;
+  std::vector<std::unique_ptr<PlayerProjectile>> myPlayPro;
   Player myPlayer;
+  int score_ = 0;
+  bool haslost_ = false;
 };
 
 #endif
