@@ -124,7 +124,7 @@ if (mouseEvent.GetMouseAction() == graphics::MouseAction::kPressed ||
       myPlayPro.push_back(std::move(OnMouseEvent_myOpp));
     }
 
-void LaunchProjectiles() {
+void Game::LaunchProjectiles() {
   for (int q = 0; q < myOpp.size(); q++) {
     std::unique_ptr<OpponentProjectile> oppList = myOpp[q]->LaunchProjectile();
     if (oppList != nullptr) {
@@ -133,7 +133,7 @@ void LaunchProjectiles() {
   }
 }
 
-void RemoveInactive() {
+void Game::RemoveInactive() {
   for (int a = myOpp.size() - 1; a >= 0; a--) {
     if (!myOpp[a]->GetIsActive()) {
       myOpp.erase(myOpp.begin() + a);

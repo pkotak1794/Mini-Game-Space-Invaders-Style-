@@ -11,6 +11,16 @@ class Opponent : public GameElement {
 
   void Draw(graphics::Image &screen) override;
   void Move(const graphics::Image &image) override;
+  std::unique_ptr<OpponentProjectile> LaunchProjectile() {
+      std::unique_ptr<OpponentProjectile> oppProList = std::make_unique<OpponentProjectile>(GetX(), GetY());
+      counter++;
+      if (counter < 10) {
+          return nullptr;
+      } else {
+          return std::move(oppProList);
+          counter = 0;
+      }
+  }
 
  private:
   graphics::Color yellow{240, 224, 53};  // player image crown
