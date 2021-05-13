@@ -22,6 +22,8 @@ class Opponent : public GameElement {
   graphics::Color red{255, 0, 0};        // player projectile cross
   graphics::Color green{0, 255, 17};     // opponent projectile cross
   graphics::Color space{255, 255, 255};  // true white
+
+  int launch = 0;
 };
 
 class OpponentProjectile : public GameElement {

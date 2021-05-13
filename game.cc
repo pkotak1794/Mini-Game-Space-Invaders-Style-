@@ -42,7 +42,7 @@ void Game::UpdateScreen() {
   }
   if (myPlayer.GetIsActive() == true) myPlayer.Draw(screen);
  }
- screen.Drawtext(0, 0, "Score: " + std::to_string(GetScore()), 30, graphics::Color(255,255,255));
+ screen.DrawText(0, 0, "Score: " + std::to_string(GetScore()), 30, graphics::Color(255,255,255));
 } else {
  screen.DrawText(235, 250, "GAME OVER", 70, graphics::Color(255,255,255));
 }
@@ -69,14 +69,14 @@ void Game::MoveGameElements() {
 
 void Game::FilterIntersections() {
   for (int i = 0; i < myOpp.size(); i++) {
-    if (myPlayer->GetIsActive() && myOpp[i]->GetIsActive() && player.IntersectsWith(myOpp[i].get())) {
+    if (myPlayer.GetIsActive() && myOpp[i]->GetIsActive() && myPlayer.IntersectsWith(myOpp[i].get())) {
       myPlayer.SetIsActive(false);
       myOpp[i]->SetIsActive(false);
       haslost_ = true;
     }
   }
   for (int z = 0; z < myOppPro.size(); z++) {
-    if (myPlayer->GetIsActive() && myOppPro[z]->GetIsActive() && player.IntersectsWith(myOppPro[z].get())) {
+    if (myPlayer.GetIsActive() && myOppPro[z]->GetIsActive() && myPlayer.IntersectsWith(myOppPro[z].get())) {
       myPlayer.SetIsActive(false);
       myOppPro[z]->SetIsActive(false);
       haslost_ = true;
@@ -106,17 +106,21 @@ void Game::OnAnimationStep() {
 }
 
 void Game::OnMouseEvent(const graphics::MouseEvent &mouse) {
-  mouse.GetMouseAction();
-  if (mouse.GetX() > 0 && mouse.GetY() > 0 &&
-      mouse.GetX() < screen.GetWidth() && mouse.GetY() < screen.GetHeight()) {
+  if (mouse.GetMouseAction() == graphics::MouseAction::kMoved || 
+      mouse.GetMouseAction() == graphics::MouseAction::kDragged) {
+        int xX = myPlayer.GetX();
+        int yY = myPlayer.GetY();
+  /*if (mouse.GetX() > 0 && mouse.GetY() > 0 &&
+      mouse.GetX() < screen.GetWidth() && mouse.GetY() < screen.GetHeight()) {*/
     myPlayer.SetX(mouse.GetX() - myPlayer.GetWidth() / 2);
     myPlayer.SetY(mouse.GetY() - myPlayer.GetHeight() / 2);
     if (myPlayer.GetX() > 800 || myPlayer.GetX() < 0) {
-      myPlayer.SetX(temp_x);
+      myPlayer.SetX(xX);
     }
     if (myPlayer.GetY() > 600 || myPlayer.GetY() < 0) {
-      myPlayer.SetY(temp_y);
+      myPlayer.SetY(yY);
   }
+ }
 }
 if (mouseEvent.GetMouseAction() == graphics::MouseAction::kPressed || 
     mouseEvent.GetMouseAction() == graphics::MouseAction::kDragged) {
