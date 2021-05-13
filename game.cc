@@ -30,7 +30,7 @@ void Game::CreatePlayerProjectiles() {
 
 void Game::UpdateScreen() {
   screen.DrawRectangle(0, 0, 800, 600, 255, 255, 255);
-  if (HasLost() == false) {
+  /*if (HasLost() == false) {*/
   for (int i = 0; i < myOpp.size(); i++) {
     if (myOpp[i]->GetIsActive() == true) {
       myOpp[i]->Draw(screen);
@@ -50,10 +50,10 @@ void Game::UpdateScreen() {
     myPlayer.Draw(screen);
   }
  screen.DrawText(0, 0, "Score: " + std::to_string(GetScore()), 30, graphics::Color(255,255,255));
-} else {
- screen.DrawText(235, 250, "GAME OVER", 70, graphics::Color(255,255,255));
- }
-}
+} //else {
+ //screen.DrawText(235, 250, "GAME OVER", 70, graphics::Color(255,255,255));
+ //}
+//}
 
 void Game::MoveGameElements() {
   for (int i = 0; i < myOpp.size(); i++) {
