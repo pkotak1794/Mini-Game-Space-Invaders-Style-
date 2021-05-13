@@ -106,7 +106,9 @@ void Game::OnAnimationStep() {
     CreateOpponents();
   }
   MoveGameElements();
+  LaunchProjectiles();
   FilterIntersections();
+  RemoveInactive();
   UpdateScreen();
   screen.Flush();
 }
