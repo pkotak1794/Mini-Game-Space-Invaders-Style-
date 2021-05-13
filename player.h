@@ -12,8 +12,8 @@ class Player : public GameElement {
 
   void Draw(graphics::Image &screen) override;
   void Move(const graphics::Image &image) override;
-  bool IntersectsWith(const Opponent &opponent);
-  bool IntersectsWith(const OpponentProjectile &projectile);
+  /*bool IntersectsWith(const Opponent &opponent);
+  bool IntersectsWith(const OpponentProjectile &projectile);*/
 
  private:
   graphics::Color yellow{240, 224, 53};  // player image crown
@@ -33,7 +33,7 @@ class PlayerProjectile : public GameElement {
 
   void Draw(graphics::Image &screen) override;
   void Move(const graphics::Image &image) override;
-  bool IntersectsWith(const Opponent &opponent);
+  /*bool IntersectsWith(const Opponent &opponent);*/
 
  private:
   // void PadPoints(std::vector<int> &points, int pad_x, int pad_y);

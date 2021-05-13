@@ -29,24 +29,31 @@ void Game::CreatePlayerProjectiles() {
 }*/
 
 void Game::UpdateScreen() {
-  // screen.DrawRectangle(0, 0, 800, 600, 255, 255, 255);
+  screen.DrawRectangle(0, 0, 800, 600, 255, 255, 255);
   if (HasLost() == false) {
   for (int i = 0; i < myOpp.size(); i++) {
-    if (myOpp[i]->GetIsActive() == true) myOpp[i]->Draw(screen);
+    if (myOpp[i]->GetIsActive() == true) {
+      myOpp[i]->Draw(screen);
+    }
   }
   for (int i = 0; i < myOppPro.size(); i++) {
-    if (myOppPro[i]->GetIsActive() == true) myOppPro[i]->Draw(screen);
+    if (myOppPro[i]->GetIsActive() == true) {
+      myOppPro[i]->Draw(screen);
+    }
   }
   for (int i = 0; i < myPlayPro.size(); i++) {
-    if (myPlayPro[i]->GetIsActive() == true) myPlayPro[i]->Draw(screen);
+    if (myPlayPro[i]->GetIsActive() == true) {
+      myPlayPro[i]->Draw(screen);
+    }
   }
-  if (myPlayer.GetIsActive() == true) myPlayer.Draw(screen);
- }
+  if (myPlayer.GetIsActive() == true) {
+    myPlayer.Draw(screen);
+  }
  screen.DrawText(0, 0, "Score: " + std::to_string(GetScore()), 30, graphics::Color(255,255,255));
 } else {
  screen.DrawText(235, 250, "GAME OVER", 70, graphics::Color(255,255,255));
  }
-// void Game::Start(graphics::Image &screen) { screen.ShowUntilClosed(); }
+}
 
 void Game::MoveGameElements() {
   for (int i = 0; i < myOpp.size(); i++) {
@@ -68,14 +75,14 @@ void Game::MoveGameElements() {
 
 void Game::FilterIntersections() {
   for (int i = 0; i < myOpp.size(); i++) {
-    if (myPlayer.GetIsActive() && myOpp[i]->GetIsActive() && myPlayer.IntersectsWith(myOpp[i].get())) {
+    if /*myPlayer.GetIsActive() && myOpp[i]->GetIsActive() &&*/ (myPlayer.IntersectsWith(myOpp[i].get())) {
       myPlayer.SetIsActive(false);
       myOpp[i]->SetIsActive(false);
       haslost_ = true;
     }
   }
   for (int z = 0; z < myOppPro.size(); z++) {
-    if (myPlayer.GetIsActive() && myOppPro[z]->GetIsActive() && myPlayer.IntersectsWith(myOppPro[z].get())) {
+    if /*(myPlayer.GetIsActive() && myOppPro[z]->GetIsActive() &&*/ (myPlayer.IntersectsWith(myOppPro[z].get())) {
       myPlayer.SetIsActive(false);
       myOppPro[z]->SetIsActive(false);
       haslost_ = true;
@@ -83,7 +90,7 @@ void Game::FilterIntersections() {
   }
   for (int p = 0; p < myPlayPro.size(); p++) {
     for (int k = 0; k < myOpp.size(); k++) {
-      if (myPlayPro[p]->GetIsActive() && myOpp[k]->GetIsActive() && myOpp[k]->IntersectsWith(myPlayPro[p].get())) {
+      if /*(myPlayPro[p]->GetIsActive() && myOpp[k]->GetIsActive() &&*/ (myOpp[k]->IntersectsWith(myPlayPro[p].get())) {
         myPlayPro[p]->SetIsActive(false);
         myOpp[k]->SetIsActive(false);
         if (myPlayer.GetIsActive()) {
@@ -120,13 +127,13 @@ void Game::OnMouseEvent(const graphics::MouseEvent &mouse) {
       myPlayer.SetY(yY);
   }
  }
-}
-if (mouseEvent.GetMouseAction() == graphics::MouseAction::kPressed || 
-    mouseEvent.GetMouseAction() == graphics::MouseAction::kDragged) {
-      std::unique_ptr<PlayerProjectile> onMouseEvent_myOpp = std::make_unique<PlayerProjectile>(GetX(), GetY());
-      myPlayPro.push_back(std::move(OnMouseEvent_myOpp));
-    }
 
+if (mouse.GetMouseAction() == graphics::MouseAction::kPressed || 
+    mouse.GetMouseAction() == graphics::MouseAction::kDragged) {
+      std::unique_ptr<PlayerProjectile> onMouseEvent_myOpp = std::make_unique<PlayerProjectile>(mouse.GetX(), mouse.GetY());
+      myPlayPro.push_back(std::move(onMouseEvent_myOpp));
+    }
+}
 void Game::LaunchProjectiles() {
   for (int q = 0; q < myOpp.size(); q++) {
     std::unique_ptr<OpponentProjectile> oppList = myOpp[q]->LaunchProjectile();
