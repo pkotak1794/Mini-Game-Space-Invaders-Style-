@@ -29,17 +29,22 @@ void Game::CreatePlayerProjectiles() {
 }*/
 
 void Game::UpdateScreen() {
-  screen.DrawRectangle(0, 0, 800, 600, 255, 255, 255);
+  // screen.DrawRectangle(0, 0, 800, 600, 255, 255, 255);
+  if (HasLost() == false) {
   for (int i = 0; i < myOpp.size(); i++) {
-    if (myOpp[i].GetIsActive() == true) myOpp[i].Draw(screen);
+    if (myOpp[i]->GetIsActive() == true) myOpp[i]->Draw(screen);
   }
   for (int i = 0; i < myOppPro.size(); i++) {
-    if (myOppPro[i].GetIsActive() == true) myOppPro[i].Draw(screen);
+    if (myOppPro[i]->GetIsActive() == true) myOppPro[i]->Draw(screen);
   }
   for (int i = 0; i < myPlayPro.size(); i++) {
-    if (myPlayPro[i].GetIsActive() == true) myPlayPro[i].Draw(screen);
+    if (myPlayPro[i]->GetIsActive() == true) myPlayPro[i]->Draw(screen);
   }
   if (myPlayer.GetIsActive() == true) myPlayer.Draw(screen);
+ }
+ screen.Drawtext(0, 0, "Score: " + std::to_string(GetScore()), 30, graphics::Color(255,255,255));
+} else {
+ screen.DrawText(235, 250, "GAME OVER", 70, graphics::Color(255,255,255));
 }
 
 // void Game::Start(graphics::Image &screen) { screen.ShowUntilClosed(); }
