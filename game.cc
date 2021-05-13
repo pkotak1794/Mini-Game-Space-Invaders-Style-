@@ -3,9 +3,6 @@
 void Game::Init() {
   myPlayer.SetX(300);
   myPlayer.SetY(300);
-  //CreateOpponents();
-  //CreateOpponentProjectiles();
-  //CreatePlayerProjectiles();
   screen.AddMouseEventListener(*this);
   screen.AddAnimationEventListener(*this);
 }
@@ -67,22 +64,27 @@ void Game::MoveGameElements() {
 
 void Game::FilterIntersections() {
   for (int i = 0; i < myOpp.size(); i++) {
-    if (myPlayer.IntersectsWith(myOpp[i]) == true) {
+    if (myPlayer->GetIsActive() && myOpp[i]->GetIsActive() && player.IntersectsWith(myOpp[i].get())) {
       myPlayer.SetIsActive(false);
-      myOpp[i].SetIsActive(false);
+      myOpp[i]->SetIsActive(false);
+      haslost_ = true;
     }
   }
-  for (int i = 0; i < myOppPro.size(); i++) {
-    if (myOppPro[i].IntersectsWith(myPlayer) == true) {
+  for (int z = 0; z < myOppPro.size(); z++) {
+    if (myPlayer->GetIsActive() && myOppPro[z]->GetIsActive() && player.IntersectsWith(myOppPro[z].get())) {
       myPlayer.SetIsActive(false);
-      myOppPro[i].SetIsActive(false);
+      myOppPro[z]->SetIsActive(false);
+      haslost_ = true;
     }
   }
   for (int p = 0; p < myPlayPro.size(); p++) {
     for (int k = 0; k < myOpp.size(); k++) {
-      if (myPlayPro[p].IntersectsWith(myOpp[k]) == true) {
-        myPlayPro[p].SetIsActive(false);
-        myOpp[k].SetIsActive(false);
+      if (myPlayPro[p]->GetIsActive() && myOpp[k]->GetIsActive() && myOpp[k]->IntersectsWith(myPlayPro[p].get())) {
+        myPlayPro[p]->SetIsActive(false);
+        myOpp[k]->SetIsActive(false);
+        if (myPlayer.GetIsActive()) {
+          score_++;
+        }
       }
     }
   }
@@ -117,6 +119,15 @@ if (mouseEvent.GetMouseAction() == graphics::MouseAction::kPressed ||
       myPlayPro.push_back(std::move(OnMouseEvent_myOpp));
     }
 
+void LaunchProjectiles() {
+  for (int q = 0; q < myOpp.size(); q++) {
+    std::unique_ptr<OpponentProjectile> oppList = myOpp[q]->LaunchProjectile();
+    if (oppList != nullptr) {
+      myOppPro.push_back(std::move(oppList));
+    }
+  }
+}
+
 void RemoveInactive() {
   for (int a = myOpp.size() - 1; a >= 0; a--) {
     if (!myOpp[a]->GetIsActive()) {
@@ -129,7 +140,7 @@ void RemoveInactive() {
     }
   }
   for (int c = myPlayPro.size() - 1; c >= 0; c--) {
-    if (!=myPlayPro[c]->GetIsActive()) {
+    if (!myPlayPro[c]->GetIsActive()) {
       myPlayPro.erase(myPlayPro.begin() + c);
     }
   }

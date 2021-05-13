@@ -30,6 +30,7 @@ class Game : public graphics::AnimationEventListener,
   void RemoveInactive();
   int GetScore() { return score_; }
   bool HasLost() { return haslost_; }
+  void LaunchProjectiles();
 
  private:
   graphics::Image screen;
