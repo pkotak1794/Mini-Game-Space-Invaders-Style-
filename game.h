@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include <vector>
+#include "cpputils/graphics/image.h"
 #include "cpputils/graphics/image_event.h"
 #include "opponent.h"
 #include "player.h"

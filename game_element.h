@@ -19,7 +19,7 @@ class GameElement {
   virtual void Move(const graphics::Image &image) = 0;
   virtual void Draw(graphics::Image &screen) = 0;
   // IntersectsWith & OutofBounds functions
-  bool IntersectsWith(GameElement &game_element);
+  bool IntersectsWith(GameElement* game_element);
   bool IsOutOfBounds(const graphics::Image &image);
   // IsActive setters/getters
   bool GetIsActive() { return is_active_; }

@@ -57,7 +57,7 @@ void Game::MoveGameElements() {
   }
   for (int j = 0; j < myPlayPro.size(); j++) {
     if (myPlayPro[j]->GetIsActive()) {
-    myPlayPro[j].Move(screen);
+    myPlayPro[j]->Move(screen);
     }
   }
 }
@@ -107,10 +107,10 @@ void Game::OnMouseEvent(const graphics::MouseEvent &mouse) {
     myPlayer.SetX(mouse.GetX() - myPlayer.GetWidth() / 2);
     myPlayer.SetY(mouse.GetY() - myPlayer.GetHeight() / 2);
     if (myPlayer.GetX() > 800 || myPlayer.GetX() < 0) {
-      player.SetX(temp_x);
+      myPlayer.SetX(temp_x);
     }
     if (myPlayer.GetY() > 600 || myPlayer.GetY() < 0) {
-      player.SetY(temp_y);
+      myPlayer.SetY(temp_y);
   }
 }
 if (mouseEvent.GetMouseAction() == graphics::MouseAction::kPressed || 
