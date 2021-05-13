@@ -45,8 +45,7 @@ void Game::UpdateScreen() {
  screen.DrawText(0, 0, "Score: " + std::to_string(GetScore()), 30, graphics::Color(255,255,255));
 } else {
  screen.DrawText(235, 250, "GAME OVER", 70, graphics::Color(255,255,255));
-}
-
+ }
 // void Game::Start(graphics::Image &screen) { screen.ShowUntilClosed(); }
 
 void Game::MoveGameElements() {
