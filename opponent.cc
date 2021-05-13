@@ -22,6 +22,18 @@ void OpponentProjectile::Move(const graphics::Image &image) {
   }
 }
 
+std::unique_ptr<OpponentProjectile> Opponent::LaunchProjectile() {
+  if (launch >= 10) {
+    launch = 0;
+    std::unique_ptr<OpponentProjectile> oppProList;
+    oppProList = std::make_unique<OpponentProjectile>();
+    return std::move(oppProList);
+  } else {
+    launch++;
+    return nullptr;
+  }
+}
+
 void Opponent::Draw(graphics::Image &screen) {
   screen.DrawRectangle(GetX(), GetY(), 50, 2, gold);
   screen.DrawRectangle(GetX(), GetY() + 2, 2, 6, gold);
@@ -111,3 +123,4 @@ void Opponent::Move(const graphics::Image &image) {
     SetIsActive(true);
   }
 }
+
