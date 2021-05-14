@@ -23,8 +23,6 @@ class Game : public graphics::AnimationEventListener,
   Player &GetPlayer() { return myPlayer; }
 
   void CreateOpponents();
-  // void CreateOpponentProjectiles();
-  // void CreatePlayerProjectiles();
   void Init();
   void UpdateScreen();
   void Start() { screen.ShowUntilClosed(); }

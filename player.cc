@@ -22,13 +22,6 @@ void PlayerProjectile::Move(const graphics::Image &image) {
   }
 }
 
-/*bool PlayerProjectile::IntersectsWith(const Opponent &opponent) {
-  return !(GetX() > opponent.GetX() + opponent.GetWidth() ||
-           opponent.GetX() > GetX() + GetWidth() ||
-           GetY() > opponent.GetY() + opponent.GetHeight() ||
-           opponent.GetY() > GetY() + GetHeight());
-}*/
-
 void Player::Draw(graphics::Image &screen) {
   screen.DrawRectangle(GetX(), GetY(), 10, 30, yellow);
   screen.DrawRectangle(GetX() + 20, GetY(), 10, 30, yellow);
@@ -55,16 +48,3 @@ void Player::Draw(graphics::Image &screen) {
 
 void Player::Move(const graphics::Image &image) {}
 
-/*bool Player::IntersectsWith(const Opponent &opponent) {
-  return !(GetX() > opponent.GetX() + opponent.GetWidth() ||
-           opponent.GetX() > GetX() + GetWidth() ||
-           GetY() > opponent.GetY() + opponent.GetHeight() ||
-           opponent.GetY() > GetY() + GetHeight());
-}
-
-bool Player::IntersectsWith(const OpponentProjectile &projectile) {
-  return !(GetX() > projectile.GetX() + projectile.GetWidth() ||
-           projectile.GetX() > GetX() + GetWidth() ||
-           GetY() > projectile.GetY() + projectile.GetHeight() ||
-           projectile.GetY() > GetY() + GetHeight());
-}*/
