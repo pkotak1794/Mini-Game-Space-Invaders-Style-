@@ -13,8 +13,8 @@ void OpponentProjectile::Draw(graphics::Image &screen) {
 }
 
 void OpponentProjectile::Move(const graphics::Image &image) {
-  SetY(GetY() + 4);
-  SetX(GetX() + 4);
+  SetY(GetY() + 3);
+  SetX(GetX() + 3);
   if (IsOutOfBounds(image)) {
     SetIsActive(false);
   } else {
