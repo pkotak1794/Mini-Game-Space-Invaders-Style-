@@ -14,13 +14,17 @@ class Game : public graphics::AnimationEventListener,
 
   graphics::Image &GetGameScreen() { return screen; }
   std::vector<std::unique_ptr<Opponent>> &GetOpponents() { return myOpp; }
-  std::vector<std::unique_ptr<OpponentProjectile>> &GetOpponentProjectiles() { return myOppPro; }
-  std::vector<std::unique_ptr<PlayerProjectile>> &GetPlayerProjectiles() { return myPlayPro; }
+  std::vector<std::unique_ptr<OpponentProjectile>> &GetOpponentProjectiles() {
+    return myOppPro;
+  }
+  std::vector<std::unique_ptr<PlayerProjectile>> &GetPlayerProjectiles() {
+    return myPlayPro;
+  }
   Player &GetPlayer() { return myPlayer; }
 
   void CreateOpponents();
-  //void CreateOpponentProjectiles();
-  //void CreatePlayerProjectiles();
+  // void CreateOpponentProjectiles();
+  // void CreatePlayerProjectiles();
   void Init();
   void UpdateScreen();
   void Start() { screen.ShowUntilClosed(); }

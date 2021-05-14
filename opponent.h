@@ -14,14 +14,14 @@ class Opponent : public GameElement {
   std::unique_ptr<class OpponentProjectile> LaunchProjectile();
 
  private:
-  graphics::Color yellow{240, 224, 53};  // player image crown
-  graphics::Color gold{219, 171, 13};    // crown outline
-  graphics::Color purple{91, 29, 143};   // crown embellishments
-  graphics::Color blue{79, 141, 255};    // opponent image shield
-  graphics::Color navy{2, 85, 237};      // shield details
-  graphics::Color red{255, 0, 0};        // player projectile cross
-  graphics::Color green{0, 255, 17};     // opponent projectile cross
-  graphics::Color space{255, 255, 255};  // true white
+  graphics::Color yellow{240, 224, 53}; // player image crown
+  graphics::Color gold{219, 171, 13};   // crown outline
+  graphics::Color purple{91, 29, 143};  // crown embellishments
+  graphics::Color blue{79, 141, 255};   // opponent image shield
+  graphics::Color navy{2, 85, 237};     // shield details
+  graphics::Color red{255, 0, 0};       // player projectile cross
+  graphics::Color green{0, 255, 17};    // opponent projectile cross
+  graphics::Color space{255, 255, 255}; // true white
 
   int launch = 0;
 };
@@ -35,14 +35,14 @@ class OpponentProjectile : public GameElement {
   void Move(const graphics::Image &image) override;
 
  private:
-  graphics::Color yellow{240, 224, 53};  // player image crown
-  graphics::Color gold{219, 171, 13};    // crown outline
-  graphics::Color purple{91, 29, 143};   // crown embellishments
-  graphics::Color blue{79, 141, 255};    // opponent image shield
-  graphics::Color navy{2, 85, 237};      // shield details
-  graphics::Color red{255, 0, 0};        // player projectile cross
-  graphics::Color green{0, 255, 17};     // opponent projectile cross
-  graphics::Color space{255, 255, 255};  // true white
+  graphics::Color yellow{240, 224, 53}; // player image crown
+  graphics::Color gold{219, 171, 13};   // crown outline
+  graphics::Color purple{91, 29, 143};  // crown embellishments
+  graphics::Color blue{79, 141, 255};   // opponent image shield
+  graphics::Color navy{2, 85, 237};     // shield details
+  graphics::Color red{255, 0, 0};       // player projectile cross
+  graphics::Color green{0, 255, 17};    // opponent projectile cross
+  graphics::Color space{255, 255, 255}; // true white
 };
 
 #endif

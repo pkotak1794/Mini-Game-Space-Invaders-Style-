@@ -24,7 +24,7 @@ void OpponentProjectile::Move(const graphics::Image &image) {
 
 std::unique_ptr<class OpponentProjectile> Opponent::LaunchProjectile() {
   if (launch >= 10) {
-     launch = 0;
+    launch = 0;
     std::unique_ptr<OpponentProjectile> oppProList;
     oppProList = std::make_unique<OpponentProjectile>();
     return std::move(oppProList);
@@ -123,4 +123,3 @@ void Opponent::Move(const graphics::Image &image) {
     SetIsActive(true);
   }
 }
-
