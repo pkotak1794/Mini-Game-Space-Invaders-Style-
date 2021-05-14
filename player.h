@@ -6,7 +6,7 @@
 #include "opponent.h"
 
 class Player : public GameElement {
-public:
+ public:
   Player() : Player(0, 0) {}
   Player(int x, int y) : GameElement(x, y, 50, 50) {}
 
@@ -15,15 +15,15 @@ public:
   /*bool IntersectsWith(const Opponent &opponent);
   bool IntersectsWith(const OpponentProjectile &projectile);*/
 
-private:
-  graphics::Color yellow{240, 224, 53}; // player image crown
-  graphics::Color gold{219, 171, 13};   // crown outline
-  graphics::Color purple{91, 29, 143};  // crown embellishments
-  graphics::Color blue{79, 141, 255};   // opponent image shield
-  graphics::Color navy{2, 85, 237};     // shield details
-  graphics::Color red{255, 0, 0};       // player projectile cross
-  graphics::Color green{0, 255, 17};    // opponent projectile cross
-  graphics::Color space{255, 255, 255}; // true white
+ private:
+  graphics::Color yellow{240, 224, 53};  // player image crown
+  graphics::Color gold{219, 171, 13};    // crown outline
+  graphics::Color purple{91, 29, 143};   // crown embellishments
+  graphics::Color blue{79, 141, 255};    // opponent image shield
+  graphics::Color navy{2, 85, 237};      // shield details
+  graphics::Color red{255, 0, 0};        // player projectile cross
+  graphics::Color green{0, 255, 17};     // opponent projectile cross
+  graphics::Color space{255, 255, 255};  // true white
 };
 
 class PlayerProjectile : public GameElement {
@@ -37,14 +37,14 @@ class PlayerProjectile : public GameElement {
 
  private:
   // void PadPoints(std::vector<int> &points, int pad_x, int pad_y);
-  graphics::Color yellow{240, 224, 53}; // player image crown
-  graphics::Color gold{219, 171, 13};   // crown outline
-  graphics::Color purple{91, 29, 143};  // crown embellishments
-  graphics::Color blue{79, 141, 255};   // opponent image shield
-  graphics::Color navy{2, 85, 237};     // shield details
-  graphics::Color red{255, 0, 0};       // player projectile cross
-  graphics::Color green{0, 255, 17};    // opponent projectile cross
-  graphics::Color space{255, 255, 255}; // true white
+  graphics::Color yellow{240, 224, 53};  // player image crown
+  graphics::Color gold{219, 171, 13};    // crown outline
+  graphics::Color purple{91, 29, 143};   // crown embellishments
+  graphics::Color blue{79, 141, 255};    // opponent image shield
+  graphics::Color navy{2, 85, 237};      // shield details
+  graphics::Color red{255, 0, 0};        // player projectile cross
+  graphics::Color green{0, 255, 17};     // opponent projectile cross
+  graphics::Color space{255, 255, 255};  // true white
 };
 
 #endif
