@@ -1,1 +1,1 @@
-
+Created a mini-game in the style of the classic Space Invaders which features a player and opponent shooting projectiles at each other to score points and eventually bring the game to a close. This project was programmed utilizing many features of object oriented programming such as polymorphism, inheritance, abstraction, pointers, etc. The player is represented by a crown and the opponent by a shield, each have projectiles shown by different colored crosses. All images, mouse events, and animation were created using a graphics library. 
